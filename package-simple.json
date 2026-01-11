@@ -1,0 +1,23 @@
+{
+  "name": "charterflow",
+  "version": "0.1.0",
+  "description": "CharterFlow: Grounded Product & Ops Studio",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"npm run dev:api\" \"npm run dev:web\"",
+    "dev:web": "cd apps/web && npm run dev",
+    "dev:api": "cd apps/api && npm run start:dev",
+    "build": "npm run build:web && npm run build:api",
+    "build:web": "cd apps/web && npm run build",
+    "build:api": "cd apps/api && npm run build",
+    "install:all": "npm install && cd apps/web && npm install && cd ../api && npm install",
+    "docker:dev": "docker-compose up -d postgres redis minio"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  }
+}
