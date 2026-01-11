@@ -1,19 +1,23 @@
+'use client';
+
+import { useAuth } from '@/contexts/auth-context';
+import { LoginForm } from '@/components/auth/login-form';
+import { Dashboard } from '@/components/dashboard';
+
 export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <h1 className="text-4xl font-bold text-center">
-          Welcome to CharterFlow
-        </h1>
+  const { isAuthenticated, isLoading } = useAuth();
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-lg">Loading...</div>
       </div>
-      <div className="text-center">
-        <p className="text-xl mb-4">
-          Grounded Product & Ops Studio
-        </p>
-        <p className="text-gray-600">
-          Transform knowledge, operations, and insights into sellable digital products, client systems, and conversion-ready funnels.
-        </p>
-      </div>
-    </main>
-  )
+    );
+  }
+
+  if (!isAuthenticated) {
+    return <LoginForm />;
+  }
+
+  return <Dashboard />;
 }
