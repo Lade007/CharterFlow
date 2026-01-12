@@ -5,6 +5,7 @@ import { ThrottlerModule } from '@nestjs/throttler';
 
 import { AuthModule } from './modules/auth/auth.module';
 import { UsersModule } from './modules/users/users.module';
+import { NotebooksModule } from './modules/notebooks/notebooks.module';
 
 import { databaseConfig } from './config/database.config';
 
@@ -25,6 +26,7 @@ import { databaseConfig } from './config/database.config';
     // Feature modules
     AuthModule,
     UsersModule,
+    NotebooksModule,
   ],
   controllers: [],
   providers: [],

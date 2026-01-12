@@ -57,13 +57,12 @@ export function Dashboard() {
                   Research and knowledge management
                 </p>
               </CardContent>
-            </Card>
 
-            <Card hover className="animate-slide-up" style={{ animationDelay: '0.1s' }}>
+            <Card hover className="animate-slide-up" style={{ animationDelay: '0.1s' }} onClick={() => console.log('UVZ Discovery clicked')}>
               <CardContent className="text-center">
                 <div className="w-12 h-12 bg-accent-100 rounded-lg flex items-center justify-center mx-auto mb-4">
                   <svg className="w-6 h-6 text-accent-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m0 16v-1m-6.637 6.682a8.97 8.97 0 014.326-6.682M4 5h8a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m0 16v-1m-6.637 6.682a8.97 8.97 0 014.326-6.682M4 5h8a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707L19.586 6.414A1 1 0 0119.293 5.121L16.464 8.464a1 1 0 01-1.423 0l8 8V9a1 1 0 00-1 1H4a1 1 0 011-1h4a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2z" />
                   </svg>
                 </div>
                 <h3 className="text-lg font-semibold mb-2">UVZ Discovery</h3>
@@ -73,11 +72,11 @@ export function Dashboard() {
               </CardContent>
             </Card>
 
-            <Card hover className="animate-slide-up" style={{ animationDelay: '0.2s' }}>
+            <Card hover className="animate-slide-up" style={{ animationDelay: '0.2s' }} onClick={() => console.log('Product Charters clicked')}>
               <CardContent className="text-center">
                 <div className="w-12 h-12 bg-success-100 rounded-lg flex items-center justify-center mx-auto mb-4">
                   <svg className="w-6 h-6 text-success-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707L19.586 6.414A1 1 0 0119.293 5.121L16.464 8.464a1 1 0 01-1.423 0l8 8V9a1 1 0 00-1 1H4a1 1 0 00-1-1V4a1 1 0 011-1h4a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2 2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707L19.586 6.414A1 1 0 0119.293 5.121L16.464 8.464a1 1 0 01-1.423 0l8 8V9a1 1 0 00-1 1H4a1 1 0 011-1h4a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2z" />
                   </svg>
                 </div>
                 <h3 className="text-lg font-semibold mb-2">Product Charters</h3>
@@ -87,11 +86,11 @@ export function Dashboard() {
               </CardContent>
             </Card>
 
-            <Card hover className="animate-slide-up" style={{ animationDelay: '0.3s' }}>
+            <Card hover className="animate-slide-up" style={{ animationDelay: '0.3s' }} onClick={() => console.log('Operations clicked')}>
               <CardContent className="text-center">
                 <div className="w-12 h-12 bg-warning-100 rounded-lg flex items-center justify-center mx-auto mb-4">
                   <svg className="w-6 h-6 text-warning-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.824 1.824 0 002.923 1.824h2.922c.426 0 .834.286 1.312.286.834 0 1.312-.286 1.312-.286.834 0-1.312.286-1.312zm0 3.39a6.95 6.95 0 01-13.9 0v2.17c0 .532.106 1.032.286 1.032.286 0 1.032-.286 1.032-.286zm1.032-.286H16.16a5.95 5.95 0 00-.596-1.04l4.775-4.627a5.95 5.95 0 00-.596-1.04l-4.775 4.627a5.95 5.95 0 00.596 1.04l4.775-4.627a5.95 5.95 0 00.596 1.04l-4.775 4.627z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.824 1.824 0 002.923 1.824h2.922c.426 0 .834.286 1.312.286.834 0 1.312-.286 1.312-.286.834 0-1.312.286-1.312zm0 3.39a6.95 6.95 0 01-13.9 0v2.17c0 .532.106 1.032.286 1.032.286 0 1.032-.286 1.032zm1.032-.286H16.16a5.95 5.95 0 00-.596-1.04l4.775-4.627a5.95 5.95 0 00-.596-1.04l-4.775-4.627a5.95 5.95 0 00.596 1.04l-4.775-4.627z" />
                   </svg>
                 </div>
                 <h3 className="text-lg font-semibold mb-2">Operations</h3>
@@ -102,7 +101,7 @@ export function Dashboard() {
             </Card>
           </div>
         </div>
-      </main>
+      </div>
     </div>
   );
 }
