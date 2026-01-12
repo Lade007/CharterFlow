@@ -1,5 +1,26 @@
 # Features and Functionality
 
+## 0. Feature Map Diagram
+
+```mermaid
+mindmap
+  root((CharterFlow))
+    Authentication
+      Register
+      Login
+      Logout
+      Route protection
+    Notebooks
+      Notebook CRUD
+      Document upload
+      Document listing
+    Planned
+      Grounded Q&A
+      UVZ Discovery
+      Product Charters
+      Ops & Systems
+```
+
 ## 1. Authentication
 - **Register**: create account
 - **Login**: retrieve JWT

@@ -1,5 +1,38 @@
 # Architecture
 
+## 0. Architecture Diagram (Local MVP)
+
+```mermaid
+flowchart TB
+  subgraph Client
+    B[Browser]
+  end
+
+  subgraph Web[apps/web]
+    NX[Next.js App Router]
+  end
+
+  subgraph Api[apps/api]
+    NS[NestJS Controllers]
+    SVC[Services]
+    ORM[TypeORM]
+    UP[Upload: multer diskStorage]
+  end
+
+  subgraph Data
+    DB[(SQLite dev / Postgres prod)]
+    DISK[(uploads/)]
+  end
+
+  B --> NX
+  NX -->|/api/* rewrites| NS
+  NS --> SVC
+  SVC --> ORM
+  ORM --> DB
+  NS --> UP
+  UP --> DISK
+```
+
 ## 1. Repository Layout
 This is a monorepo with apps and shared packages.
 

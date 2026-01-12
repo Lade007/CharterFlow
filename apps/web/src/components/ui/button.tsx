@@ -7,6 +7,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   size?: 'sm' | 'md' | 'lg';
   loading?: boolean;
   children: React.ReactNode;
+  asChild?: boolean;
 }
 
 export function Button({
@@ -16,8 +17,14 @@ export function Button({
   loading = false,
   disabled,
   children,
+  asChild = false,
   ...props
 }: ButtonProps) {
+  if (asChild) {
+    return (
+      <>{children}</>
+    );
+  }
   const baseStyles = 'inline-flex items-center justify-center font-medium rounded-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2';
   
   const variants = {

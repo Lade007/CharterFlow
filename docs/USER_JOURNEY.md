@@ -1,5 +1,17 @@
 # User Journey
 
+## 0. User Journey Diagram (MVP)
+
+```mermaid
+flowchart TD
+  A[Landing /] --> B[Login /login]
+  B --> C[Dashboard /dashboard]
+  C --> D[Notebooks /notebooks]
+  D --> E[Notebook Detail /notebooks/:id]
+  E --> F[Upload Document]
+  F --> G[Document appears in list]
+```
+
 ## 1. Primary Personas
 - **Founder/Builder**: validating a product wedge and creating execution plans
 - **Operator/PM**: organizing research and translating into systems

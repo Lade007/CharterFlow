@@ -9,6 +9,23 @@ CharterFlow is a Product & Ops Studio that helps users:
 
 This document describes the system design for the current implementation (MVP) and the intended evolution.
 
+## 1.1 System Design Diagram (MVP)
+
+```mermaid
+flowchart LR
+  U[User] -->|Browser| WEB[Next.js Web (apps/web)]
+  WEB -->|/api/* (rewrites)| API[NestJS API (apps/api)]
+  API -->|TypeORM| DB[(SQLite dev / Postgres prod)]
+  API -->|multer diskStorage| FS[(Local uploads/ folder)]
+
+  subgraph Future[Planned]
+    API --> Q[Queue (BullMQ/Redis)]
+    Q --> ING[Ingestion workers]
+    ING --> VS[(Vector store pgvector)]
+    API --> LLM[LLM Provider Gateway]
+  end
+```
+
 ## 2. High-level Architecture
 ### 2.1 Components
 - **Web App (Next.js)**
