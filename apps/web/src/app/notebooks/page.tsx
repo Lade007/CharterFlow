@@ -1,10 +1,10 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { useAuth } from '@/contexts/auth-context';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
 
 interface Notebook {
   id: string;
@@ -16,6 +16,7 @@ interface Notebook {
 
 export default function NotebooksPage() {
   const { isAuthenticated } = useAuth();
+  const router = useRouter();
   const [notebooks, setNotebooks] = useState<Notebook[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [newNotebookTitle, setNewNotebookTitle] = useState('');
@@ -43,8 +44,7 @@ export default function NotebooksPage() {
     }
   };
 
-  const createNotebook = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const createNotebook = async () => {
     if (!newNotebookTitle.trim()) return;
 
     setIsCreating(true);
@@ -89,12 +89,23 @@ export default function NotebooksPage() {
           <h1 className="text-3xl font-bold text-neutral-900">
             My Notebooks
           </h1>
+        </div>
+
+        <div className="mb-8 flex flex-col sm:flex-row gap-3 sm:items-center">
+          <input
+            value={newNotebookTitle}
+            onChange={(e) => setNewNotebookTitle(e.target.value)}
+            placeholder="New notebook title"
+            className="w-full sm:max-w-md rounded-md border border-secondary-300 bg-white px-3 py-2 text-sm text-secondary-900 shadow-sm focus:border-primary-500 focus:ring-primary-500"
+            disabled={isCreating}
+          />
           <Button
             onClick={createNotebook}
-            disabled={isCreating}
-            className="animate-fade-in"
+            disabled={isCreating || !newNotebookTitle.trim()}
+            className="sm:w-auto w-full"
+            loading={isCreating}
           >
-            {isCreating ? 'Creating...' : '+ New Notebook'}
+            + New Notebook
           </Button>
         </div>
 
@@ -130,6 +141,7 @@ export default function NotebooksPage() {
                     <Button
                       variant="ghost"
                       size="sm"
+                      onClick={() => router.push(`/notebooks/${notebook.id}`)}
                     >
                       Open →
                     </Button>

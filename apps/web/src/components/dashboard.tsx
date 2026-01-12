@@ -1,11 +1,13 @@
 'use client';
 
 import { useAuth } from '@/contexts/auth-context';
+import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 
 export function Dashboard() {
   const { user, logout } = useAuth();
+  const router = useRouter();
 
   return (
     <div className="min-h-screen bg-neutral-50">
@@ -45,7 +47,11 @@ export function Dashboard() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Card hover className="animate-slide-up">
+            <Card
+              hover
+              className="animate-slide-up cursor-pointer"
+              onClick={() => router.push('/notebooks')}
+            >
               <CardContent className="text-center">
                 <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mx-auto mb-4">
                   <svg className="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -57,8 +63,14 @@ export function Dashboard() {
                   Research and knowledge management
                 </p>
               </CardContent>
+            </Card>
 
-            <Card hover className="animate-slide-up" style={{ animationDelay: '0.1s' }} onClick={() => console.log('UVZ Discovery clicked')}>
+            <Card
+              hover
+              className="animate-slide-up cursor-pointer"
+              style={{ animationDelay: '0.1s' }}
+              onClick={() => router.push('/uvz')}
+            >
               <CardContent className="text-center">
                 <div className="w-12 h-12 bg-accent-100 rounded-lg flex items-center justify-center mx-auto mb-4">
                   <svg className="w-6 h-6 text-accent-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -72,7 +84,12 @@ export function Dashboard() {
               </CardContent>
             </Card>
 
-            <Card hover className="animate-slide-up" style={{ animationDelay: '0.2s' }} onClick={() => console.log('Product Charters clicked')}>
+            <Card
+              hover
+              className="animate-slide-up cursor-pointer"
+              style={{ animationDelay: '0.2s' }}
+              onClick={() => router.push('/charters')}
+            >
               <CardContent className="text-center">
                 <div className="w-12 h-12 bg-success-100 rounded-lg flex items-center justify-center mx-auto mb-4">
                   <svg className="w-6 h-6 text-success-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -86,7 +103,12 @@ export function Dashboard() {
               </CardContent>
             </Card>
 
-            <Card hover className="animate-slide-up" style={{ animationDelay: '0.3s' }} onClick={() => console.log('Operations clicked')}>
+            <Card
+              hover
+              className="animate-slide-up cursor-pointer"
+              style={{ animationDelay: '0.3s' }}
+              onClick={() => router.push('/operations')}
+            >
               <CardContent className="text-center">
                 <div className="w-12 h-12 bg-warning-100 rounded-lg flex items-center justify-center mx-auto mb-4">
                   <svg className="w-6 h-6 text-warning-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -101,7 +123,7 @@ export function Dashboard() {
             </Card>
           </div>
         </div>
-      </div>
+      </main>
     </div>
   );
-}
+ }

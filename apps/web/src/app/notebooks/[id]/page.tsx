@@ -13,7 +13,7 @@ interface Document {
   fileName: string;
   mimeType: string;
   size: number;
-  uploadedAt: string;
+  createdAt: string;
 }
 
 interface Notebook {
@@ -27,20 +27,21 @@ export default function NotebookDetailPage() {
   const { isAuthenticated } = useAuth();
   const params = useParams();
   const router = useRouter();
+  const notebookId = Array.isArray(params.id) ? params.id[0] : params.id;
   const [notebook, setNotebook] = useState<Notebook | null>(null);
   const [documents, setDocuments] = useState<Document[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (isAuthenticated && params.id) {
+    if (isAuthenticated && notebookId) {
       fetchNotebook();
       fetchDocuments();
     }
-  }, [isAuthenticated, params.id]);
+  }, [isAuthenticated, notebookId]);
 
   const fetchNotebook = async () => {
     try {
-      const response = await fetch(`/api/notebooks/${params.id}`, {
+      const response = await fetch(`/api/notebooks/${notebookId}`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
         },
@@ -56,7 +57,7 @@ export default function NotebookDetailPage() {
 
   const fetchDocuments = async () => {
     try {
-      const response = await fetch(`/api/notebooks/${params.id}/documents`, {
+      const response = await fetch(`/api/notebooks/${notebookId}/documents`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
         },
@@ -129,7 +130,7 @@ export default function NotebookDetailPage() {
                   </h3>
                 </CardHeader>
                 <CardContent>
-                  <DocumentUpload notebookId={params.id!} onUploadComplete={(document) => {
+                  <DocumentUpload notebookId={notebookId} onUploadComplete={(document) => {
                     setDocuments([document, ...documents]);
                   }} />
                 </CardContent>
@@ -155,7 +156,7 @@ export default function NotebookDetailPage() {
                             </div>
                             <div className="text-right">
                               <div className="text-xs text-neutral-500">
-                                {new Date(doc.uploadedAt).toLocaleDateString()}
+                                {new Date(doc.createdAt).toLocaleDateString()}
                               </div>
                               <div className="text-xs text-neutral-500">
                                 {(doc.size / 1024).toFixed(1)} KB

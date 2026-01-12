@@ -62,11 +62,17 @@ export function DocumentUpload({ notebookId, onUploadComplete }: DocumentUploadP
       });
       
       xhr.onload = () => {
-        if (xhr.status === 200) {
+        if (xhr.status === 200 || xhr.status === 201) {
           const response = JSON.parse(xhr.responseText);
           onUploadComplete(response);
           setUploadProgress(100);
+          setIsUploading(false);
+          return;
         }
+
+        console.error('Upload failed', xhr.status, xhr.responseText);
+        setIsUploading(false);
+        setUploadProgress(0);
       };
       
       xhr.onerror = () => {
