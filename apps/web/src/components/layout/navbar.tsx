@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import { useAuth } from '@/contexts/auth-context';
 import { Button } from '@/components/ui/button';
 import { CharterFlowLogo } from '@/components/ui/brand/charterflow-logo';
+import { MobileMenu } from '@/components/ui/mobile-menu';
 import { cn } from '@/lib/utils';
 
 export function Navbar() {
@@ -52,8 +53,11 @@ export function Navbar() {
             ))}
           </div>
 
-          {/* Auth */}
-          <div className="flex items-center space-x-3">
+          {/* Mobile menu button */}
+          <MobileMenu />
+
+          {/* Desktop Auth */}
+          <div className="hidden md:flex items-center space-x-3">
             {isAuthenticated ? (
               <div className="flex items-center space-x-3">
                 <span className="hidden sm:block text-sm text-neutral-600">

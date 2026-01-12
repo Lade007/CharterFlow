@@ -5,9 +5,10 @@ interface GlassCardProps {
   className?: string;
   variant?: 'default' | 'subtle' | 'strong';
   style?: React.CSSProperties;
+  onClick?: () => void;
 }
 
-export function GlassCard({ children, className, variant = 'default', style }: GlassCardProps) {
+export function GlassCard({ children, className, variant = 'default', style, onClick }: GlassCardProps) {
   const variants = {
     default: 'bg-white/60 backdrop-blur-md border border-white/20 shadow-lg shadow-black/5',
     subtle: 'bg-white/40 backdrop-blur-sm border border-white/10 shadow-sm',
@@ -22,6 +23,7 @@ export function GlassCard({ children, className, variant = 'default', style }: G
         className
       )}
       style={style}
+      onClick={onClick}
     >
       {children}
     </div>
