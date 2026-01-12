@@ -14,38 +14,56 @@ export function CharterFlowLogo({ className }: CharterFlowLogoProps) {
     >
       <defs>
         <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="rgb(99 102 241)" />
-          <stop offset="100%" stopColor="rgb(139 92 246)" />
+          <stop offset="0%" stopColor="#6366f1" />
+          <stop offset="100%" stopColor="#8b5cf6" />
         </linearGradient>
-        <filter id="logoGlow">
-          <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
-          <feMerge>
-            <feMergeNode in="coloredBlur"/>
-            <feMergeNode in="SourceGraphic"/>
-          </feMerge>
+        <filter id="logoGlow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="1" result="coloredBlur" />
+          <feComposite in="coloredBlur" operator="over" />
         </filter>
       </defs>
-      
-      {/* Outer hexagon */}
+
+      {/* Outer Hexagon Container */}
       <path
-        d="M16 2L28 9V23L16 30L4 23V9L16 2Z"
+        d="M16 2L28.1 9V23L16 30L3.9 23V9L16 2Z"
         stroke="url(#logoGradient)"
-        strokeWidth="2"
+        strokeWidth="2.5"
         fill="none"
-        filter="url(#logoGlow)"
-        className="opacity-80"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="opacity-90"
       />
-      
-      {/* Inner stylized C and F */}
-      <g fill="url(#logoGradient)" className="opacity-90">
-        {/* C shape */}
-        <path d="M10 12C10 10.8954 10.8954 10 12 10H14C15.1046 10 16 10.8954 16 12V14C16 15.1046 15.1046 16 14 16H12C10.8954 16 10 15.1046 10 14V12Z" />
-        {/* F shape */}
-        <path d="M18 10H22V12H20V14H22V16H20V18H18V10Z" />
-      </g>
-      
-      {/* Center dot */}
-      <circle cx="16" cy="16" r="1.5" fill="url(#logoGradient)" className="opacity-100" />
+
+      {/* "C" Monogram - Modern & Geometric */}
+      <path
+        d="M16.5 11C15 11 13.5 11.5 12.5 12.5C11.5 13.5 11 14.8 11 16C11 17.2 11.5 18.5 12.5 19.5C13.5 20.5 15 21 16.5 21"
+        stroke="url(#logoGradient)"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        className="opacity-100"
+      />
+
+      {/* "F" Monogram - Abstracted as a data flow line */}
+      <path
+        d="M21 11H17V21"
+        stroke="url(#logoGradient)"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="opacity-100"
+      />
+      <path
+        d="M17 16H20"
+        stroke="url(#logoGradient)"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="opacity-100"
+      />
+
+      {/* Orbiting Dot (Intel) */}
+      <circle cx="21" cy="21" r="1.5" fill="#f43f5e" className="opacity-90 animate-pulse" />
+
     </svg>
   );
 }

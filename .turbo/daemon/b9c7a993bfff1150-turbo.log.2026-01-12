@@ -13983,3 +13983,34 @@
 2026-01-12T18:30:08.705934Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@charterflow/web"), path: AnchoredSystemPathBuf("apps\\web") }}))
 2026-01-12T18:30:19.594194Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\web\\tailwind.config.ts")}
 2026-01-12T18:30:19.594210Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@charterflow/web"), path: AnchoredSystemPathBuf("apps\\web") }}))
+2026-01-12T18:32:05.201894Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\b9c7a993bfff1150-turbo.log.2026-01-12")}
+2026-01-12T18:32:05.201921Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2026-01-12T18:32:07.606810Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\b9c7a993bfff1150-turbo.log.2026-01-12")}
+2026-01-12T18:32:07.606827Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2026-01-12T18:35:20.875855Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies\\.turbo-cookie"), AnchoredSystemPathBuf(".turbo\\cookies\\1.cookie"), AnchoredSystemPathBuf(".turbo"), AnchoredSystemPathBuf(".turbo\\cookies")}
+2026-01-12T18:35:20.875885Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2026-01-12T18:35:20.895100Z  WARN daemon_server: turborepo_lib::commands::daemon: daemon already running
+2026-01-12T18:35:20.968869Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies")}
+2026-01-12T18:35:20.968889Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2026-01-12T18:35:21.171606Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\daemon\\b9c7a993bfff1150-turbo.log.2026-01-12")}
+2026-01-12T18:35:21.171662Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2026-01-12T18:37:30.780748Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\web\\next.config.js")}
+2026-01-12T18:37:30.780804Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@charterflow/web"), path: AnchoredSystemPathBuf("apps\\web") }}))
+2026-01-12T18:39:22.480472Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\web\\src\\components\\ui\\brand\\charterflow-logo.tsx")}
+2026-01-12T18:39:22.480508Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@charterflow/web"), path: AnchoredSystemPathBuf("apps\\web") }}))
+2026-01-12T18:39:22.704953Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\web\\src\\components\\ui\\brand\\charterflow-logo.tsx")}
+2026-01-12T18:39:22.704975Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@charterflow/web"), path: AnchoredSystemPathBuf("apps\\web") }}))
+2026-01-12T18:39:22.705013Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2026-01-12T18:40:05.179991Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\web\\src\\app\\globals.css")}
+2026-01-12T18:40:05.180016Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@charterflow/web"), path: AnchoredSystemPathBuf("apps\\web") }}))
+2026-01-12T21:50:38.570460Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\web\\src\\app"), AnchoredSystemPathBuf("apps\\web\\src\\app\\premium-page.tsx")}
+2026-01-12T21:50:38.570524Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@charterflow/web"), path: AnchoredSystemPathBuf("apps\\web") }}))
+2026-01-12T21:50:41.380525Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\web\\build_output_4.txt"), AnchoredSystemPathBuf("apps\\web")}
+2026-01-12T21:50:41.380602Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@charterflow/web"), path: AnchoredSystemPathBuf("apps\\web") }}))
+2026-01-12T21:50:46.266383Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\web\\build_output_4.txt")}
+2026-01-12T21:50:46.266417Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@charterflow/web"), path: AnchoredSystemPathBuf("apps\\web") }}))
+2026-01-12T21:53:45.540941Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo"), AnchoredSystemPathBuf(".turbo\\cookies\\1.cookie"), AnchoredSystemPathBuf(".turbo\\cookies"), AnchoredSystemPathBuf(".turbo\\cookies\\.turbo-cookie")}
+2026-01-12T21:53:45.541005Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2026-01-12T21:53:45.627941Z  WARN daemon_server: turborepo_lib::commands::daemon: daemon already running
+2026-01-12T21:53:45.637817Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo\\cookies")}
+2026-01-12T21:53:45.637853Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))

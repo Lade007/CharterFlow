@@ -57,3 +57,17 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  .glass {
+    @apply bg-white/70 backdrop-blur-lg border border-white/20 shadow-xl;
+  }
+  
+  .glass-dark {
+    @apply bg-slate-900/70 backdrop-blur-lg border border-white/10 shadow-xl;
+  }
+  
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600;
+  }
+}
