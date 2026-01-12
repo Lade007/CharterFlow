@@ -1,0 +1,14 @@
+npm warn cli npm v11.6.2 does not support Node.js v21.7.3. This version of npm supports the following node versions: `^20.17.0 || >=22.9.0`. You can find the latest version at https://nodejs.org/.
+
+> @charterflow/web@0.1.0 lint
+> next lint
+
+Failed to load config "next/core-web-vitals" to extend from.
+Referenced from: D:\Git Proj\Grounded Product and Ops SaaS\apps\web\.eslintrc.json
+npm error Lifecycle script `lint` failed with error:
+npm error code 1
+npm error path D:\Git Proj\Grounded Product and Ops SaaS\apps\web
+npm error workspace @charterflow/web@0.1.0
+npm error location D:\Git Proj\Grounded Product and Ops SaaS\apps\web
+npm error command failed
+npm error command C:\WINDOWS\system32\cmd.exe /d /s /c next lint

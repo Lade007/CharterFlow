@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 import { cn } from '@/lib/utils';
 
 interface PremiumHeroProps {
@@ -9,194 +9,36 @@ interface PremiumHeroProps {
 }
 
 export function PremiumHero({ className, variant = 'default' }: PremiumHeroProps) {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    // Set canvas size
-    const dpr = window.devicePixelRatio || 1;
-    canvas.width = 400 * dpr;
-    canvas.height = 400 * dpr;
-    canvas.style.width = '400px';
-    canvas.style.height = '400px';
-    ctx.scale(dpr, dpr);
-
-    let animationFrame: number;
-    let time = 0;
-
-    const drawHexagon = (x: number, y: number, size: number, rotation: number) => {
-      ctx.save();
-      ctx.translate(x, y);
-      ctx.rotate(rotation);
-      
-      // Hexagon path
-      ctx.beginPath();
-      for (let i = 0; i < 6; i++) {
-        const angle = (Math.PI / 3) * i;
-        const px = size * Math.cos(angle);
-        const py = size * Math.sin(angle);
-        if (i === 0) {
-          ctx.moveTo(px, py);
-        } else {
-          ctx.lineTo(px, py);
-        }
-      }
-      ctx.closePath();
-      
-      // Gradient fill
-      const gradient = ctx.createLinearGradient(-size, -size, size, size);
-      if (variant === 'dark') {
-        gradient.addColorStop(0, '#6366f1'); // Indigo
-        gradient.addColorStop(0.5, '#8b5cf6'); // Violet
-        gradient.addColorStop(1, '#a855f7'); // Purple
-      } else if (variant === 'light') {
-        gradient.addColorStop(0, '#e0e7ff'); // Light indigo
-        gradient.addColorStop(0.5, '#c7d2fe'); // Light violet
-        gradient.addColorStop(1, '#f3e8ff'); // Light purple
-      } else {
-        gradient.addColorStop(0, '#4f46e5'); // Darker indigo
-        gradient.addColorStop(0.5, '#7c3aed'); // Darker violet
-        gradient.addColorStop(1, '#9333ea'); // Darker purple
-      }
-      
-      ctx.fillStyle = gradient;
-      ctx.fill();
-      
-      // Thin stroke
-      ctx.strokeStyle = variant === 'dark' ? '#ffffff' : '#1e293b';
-      ctx.lineWidth = 2;
-      ctx.stroke();
-      
-      ctx.restore();
-    };
-
-    const drawQFMonogram = (x: number, y: number, size: number, time: number) => {
-      ctx.save();
-      ctx.translate(x, y);
-      
-      // Q - chat bubble with orbiting dot
-      ctx.beginPath();
-      ctx.arc(0, 0, size * 0.3, 0, Math.PI * 2);
-      ctx.fillStyle = variant === 'dark' ? '#ffffff' : '#1e293b';
-      ctx.fill();
-      
-      // Orbiting dot
-      const orbitAngle = time * 0.002;
-      const orbitRadius = size * 0.4;
-      const dotX = Math.cos(orbitAngle) * orbitRadius;
-      const dotY = Math.sin(orbitAngle) * orbitRadius;
-      
-      ctx.beginPath();
-      ctx.arc(dotX, dotY, size * 0.08, 0, Math.PI * 2);
-      const dotGradient = ctx.createRadialGradient(dotX, dotY, 0, dotX, dotY, size * 0.08);
-      dotGradient.addColorStop(0, '#fbbf24'); // Amber
-      dotGradient.addColorStop(1, '#f59e0b'); // Orange
-      ctx.fillStyle = dotGradient;
-      ctx.fill();
-      
-      // F - geometric and bold
-      ctx.font = `bold ${size * 0.4}px Inter, system-ui, sans-serif`;
-      ctx.fillStyle = variant === 'dark' ? '#ffffff' : '#1e293b';
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.fillText('F', size * 0.6, 0);
-      
-      ctx.restore();
-    };
-
-    const animate = () => {
-      ctx.clearRect(0, 0, 400 * dpr, 400 * dpr);
-      
-      // Subtle noise texture
-      const imageData = ctx.createImageData(400 * dpr, 400 * dpr);
-      const data = imageData.data;
-      for (let i = 0; i < data.length; i += 4) {
-        const noise = Math.random() * 5;
-        data[i] = data[i] + noise;     // R
-        data[i + 1] = data[i + 1] + noise; // G
-        data[i + 2] = data[i + 2] + noise; // B
-        data[i + 3] = 255;               // A
-      }
-      ctx.putImageData(imageData, 0, 0);
-      
-      // Center hexagon with subtle rotation
-      const hexRotation = time * 0.0005;
-      drawHexagon(200, 200, 120, hexRotation);
-      
-      // QF monogram
-      drawQFMonogram(200, 200, 80, time);
-      
-      // Light reflections
-      const reflectionAngle = time * 0.001;
-      const reflectionX = 200 + Math.cos(reflectionAngle) * 60;
-      const reflectionY = 200 + Math.sin(reflectionAngle) * 60;
-      
-      const reflectionGradient = ctx.createRadialGradient(
-        reflectionX, reflectionY, 0,
-        reflectionX, reflectionY, 40
-      );
-      reflectionGradient.addColorStop(0, 'rgba(255, 255, 255, 0.1)');
-      reflectionGradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
-      ctx.fillStyle = reflectionGradient;
-      ctx.fillRect(0, 0, 400 * dpr, 400 * dpr);
-      
-      time += 16; // ~60fps
-      animationFrame = requestAnimationFrame(animate);
-    };
-
-    animate();
-    setIsLoaded(true);
-
-    return () => {
-      if (animationFrame) {
-        cancelAnimationFrame(animationFrame);
-      }
-    };
-  }, [variant]);
-
   return (
     <div className={cn('relative inline-block', className)}>
-      <canvas
-        ref={canvasRef}
-        className={cn(
-          'w-24 h-24 sm:w-32 sm:h-32 rounded-2xl transition-all duration-500',
-          'backdrop-blur-md border border-white/10 shadow-2xl',
-          'hover:shadow-3xl hover:scale-105',
-          !isLoaded && 'opacity-0'
-        )}
-        style={{
-          background: variant === 'dark' 
-            ? 'linear-gradient(135deg, #1e293b 0%, #334155 100%)'
-            : variant === 'light'
-            ? 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)'
-            : 'linear-gradient(135deg, #f9fafb 0%, #e5e7eb 100%)',
-        }}
-      />
-      {/* Subtle glow effect */}
-      <div 
-        className={cn(
-          'absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-500',
-          isLoaded && 'opacity-100',
-          'pointer-events-none'
-        )}
-        style={{
-          background: variant === 'dark'
-            ? 'radial-gradient(circle at center, rgba(139, 92, 246, 0.15) 0%, transparent 70%)'
-            : 'radial-gradient(circle at center, rgba(99, 102, 241, 0.1) 0%, transparent 70%)',
-        }}
-      />
+      <div className={cn(
+        'relative w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 transition-all duration-500',
+        'animate-float' // We will add this animation in tailwind config
+      )}>
+        {/* Glowing backdrop */}
+        <div
+          className={cn(
+            'absolute inset-0 rounded-full blur-3xl opacity-60 animate-pulse-slow',
+            variant === 'dark' ? 'bg-indigo-500/30' : 'bg-indigo-400/40'
+          )}
+        />
+
+        {/* Main Hero Visual */}
+        <img
+          src="/hero-visual.png"
+          alt="CharterFlow Premium Hero"
+          className="relative z-10 w-full h-full object-contain drop-shadow-2xl"
+        />
+
+        {/* Glassmorphism reflection overlay */}
+        <div className="absolute inset-0 z-20 bg-gradient-to-tr from-white/10 to-transparent rounded-full opacity-50 pointer-events-none" />
+      </div>
     </div>
   );
 }
 
 // Premium hero section component
-export function PremiumHeroSection({ 
+export function PremiumHeroSection({
   title = "Transform knowledge into products",
   subtitle = "AI-powered platform for founders, operators, and product strategists",
   ctaText = "Get Started",
@@ -212,22 +54,22 @@ export function PremiumHeroSection({
   return (
     <div className={cn(
       'min-h-screen flex items-center justify-center relative overflow-hidden',
-      variant === 'dark' 
+      variant === 'dark'
         ? 'bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900'
         : variant === 'light'
-        ? 'bg-gradient-to-br from-slate-50 via-white to-slate-100'
-        : 'bg-gradient-to-br from-indigo-50 via-white to-purple-50'
+          ? 'bg-gradient-to-br from-slate-50 via-white to-slate-100'
+          : 'bg-gradient-to-br from-indigo-50 via-white to-purple-50'
     )}>
       {/* Subtle noise texture overlay */}
-      <div 
+      <div
         className="absolute inset-0 opacity-30"
         style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='1 0 0 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
         }}
       />
-      
+
       {/* Radial lighting from center */}
-      <div 
+      <div
         className="absolute inset-0"
         style={{
           background: variant === 'dark'
@@ -255,7 +97,7 @@ export function PremiumHeroSection({
                 {title}
               </span>
             </h1>
-            
+
             <p className={cn(
               'text-lg sm:text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed',
               variant === 'dark' ? 'text-slate-300' : 'text-slate-600'

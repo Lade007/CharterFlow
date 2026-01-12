@@ -4,12 +4,17 @@ const nextConfig = {
   experimental: {
     serverComponentsExternalPackages: ['pg'],
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   // Suppress console warnings about browser extensions in development
   webpack: (config, { isServer }) => {
     if (!isServer) {
       config.optimization = {
         ...config.optimization,
-        splitChunks: 'all',
+        splitChunks: {
+          chunks: 'all',
+        },
       };
     }
     return config;

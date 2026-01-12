@@ -1,0 +1,32 @@
+npm warn cli npm v11.6.2 does not support Node.js v21.7.3. This version of npm supports the following node versions: `^20.17.0 || >=22.9.0`. You can find the latest version at https://nodejs.org/.
+
+> @charterflow/web@0.1.0 build
+> next build
+
+  Γû▓ Next.js 14.2.35
+
+   Creating an optimized production build ...
+ Γ£ô Compiled successfully
+   Skipping linting
+   Checking validity of types ...
+Failed to compile.
+
+./src/lib/api/client.ts:37:15
+Type error: Property 'Authorization' does not exist on type 'HeadersInit'.
+  Property 'Authorization' does not exist on type '[string, string][]'.
+
+  35 |
+  36 |     if (this.token) {
+> 37 |       headers.Authorization = `Bearer ${this.token}`;
+     |               ^
+  38 |     }
+  39 |
+  40 |     const response = await fetch(url, {
+Next.js build worker exited with code: 1 and signal: null
+npm error Lifecycle script `build` failed with error:
+npm error code 1
+npm error path D:\Git Proj\Grounded Product and Ops SaaS\apps\web
+npm error workspace @charterflow/web@0.1.0
+npm error location D:\Git Proj\Grounded Product and Ops SaaS\apps\web
+npm error command failed
+npm error command C:\WINDOWS\system32\cmd.exe /d /s /c next build
