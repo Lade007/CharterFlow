@@ -1,0 +1,7 @@
+npm warn cli npm v11.6.2 does not support Node.js v21.7.3. This version of npm supports the following node versions: `^20.17.0 || >=22.9.0`. You can find the latest version at https://nodejs.org/.
+
+> @charterflow/web@0.1.0 build
+> next build
+
+  Γû▓ Next.js 14.2.35
+
