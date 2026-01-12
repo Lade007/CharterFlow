@@ -2,6 +2,9 @@
 
 ## 0. Architecture Diagram (Local MVP)
 
+
+![CharterFlow Architecture](../docs/assets/architecture_diagram.png)
+
 ```mermaid
 flowchart TB
     subgraph "🌐 Client Environment"

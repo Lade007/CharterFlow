@@ -1,5 +1,7 @@
 # CharterFlow: Grounded Product & Ops Studio
 
+![CharterFlow Hero](docs/assets/charterflow_hero.png)
+
 CharterFlow is an AI-powered SaaS platform that transforms knowledge, operations, and insights into sellable digital products, client systems, and conversion-ready funnels. It combines the power of grounded research, product discovery, operational design, and marketing automation into one unified studio.
 
 ## 🎯 Product Vision
@@ -30,23 +32,7 @@ CharterFlow empowers creators, agencies, and enterprises to:
 
 ## 🏗️ Architecture Overview
 
-```
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Frontend      │    │   Backend API   │    │   AI Services   │
-│   Next.js 14    │◄──►│   NestJS        │◄──►│   LLM Gateway   │
-│   React 18      │    │   TypeScript    │    │   RAG Pipeline  │
-│   Tailwind CSS  │    │   PostgreSQL    │    │   Agents        │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-         │                       │                       │
-         └───────────────────────┼───────────────────────┘
-                                 │
-                    ┌─────────────────┐
-                    │   Infrastructure│
-                    │   Docker + K8s  │
-                    │   Redis Cache   │
-                    │   S3 Storage    │
-                    └─────────────────┘
-```
+![CharterFlow Architecture](docs/assets/architecture_diagram.png)
 
 ## 🚀 Core Modules
 

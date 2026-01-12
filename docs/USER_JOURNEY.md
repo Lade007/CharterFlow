@@ -2,6 +2,9 @@
 
 ## 0. User Journey Diagram (MVP)
 
+
+![CharterFlow User Journey](../docs/assets/user_journey_map.png)
+
 ```mermaid
 journey
     title CharterFlow User Experience Journey

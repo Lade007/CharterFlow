@@ -4,6 +4,16 @@ const nextConfig = {
   experimental: {
     serverComponentsExternalPackages: ['pg'],
   },
+  // Suppress console warnings about browser extensions in development
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.optimization = {
+        ...config.optimization,
+        splitChunks: 'all',
+      };
+    }
+    return config;
+  },
   async rewrites() {
     const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
     return [
