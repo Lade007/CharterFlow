@@ -1,3 +1,14 @@
 export { Button } from './button';
 export { Input } from './input';
 export { Card, CardHeader, CardContent, CardFooter } from './card';
+export { GlassCard } from './glass-card';
+export { Badge } from './badge';
+export { Spinner, LoadingOverlay, Skeleton } from './spinner';
+export { ToastProvider, useToast, toast } from './toast';
+export { FloatingOrbs, AnimatedGradient } from './floating-orbs';
+export { TextReveal, StaggeredTextReveal, TypewriterText, FadeInScale } from './text-reveal';
+export { HoverCard, MagneticButton, SpotlightCard, GlitchText } from './hover-card';
+export { ParallaxSection } from './parallax-section';
+export { MobileMenu } from './mobile-menu';
+export { PremiumHero, PremiumHeroSection } from './brand/premium-hero';
+export { SimpleBackground } from './simple-background';

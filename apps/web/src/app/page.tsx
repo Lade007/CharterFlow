@@ -6,35 +6,20 @@ import { Button } from '@/components/ui/button';
 import { GlassCard } from '@/components/ui/glass-card';
 import { CharterFlowLogo } from '@/components/ui/brand/charterflow-logo';
 import { ParallaxSection } from '@/components/ui/parallax-section';
+import { FloatingOrbs, AnimatedGradient } from '@/components/ui/floating-orbs';
+import { TextReveal, StaggeredTextReveal, TypewriterText } from '@/components/ui/text-reveal';
+import { SpotlightCard, MagneticButton } from '@/components/ui/hover-card';
 
 export default function Home() {
   const router = useRouter();
   const { isAuthenticated } = useAuth();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary-50 via-white to-secondary-50 overflow-x-hidden">
-      {/* Multi-layer parallax background */}
+    <div className="min-h-screen bg-gradient-to-br from-primary-50 via-white to-secondary-50 overflow-x-hidden relative">
+      {/* Enhanced background effects */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        {/* Layer 1: Slowest */}
-        <ParallaxSection speed={0.2}>
-          <div className="absolute -top-40 -right-40 w-96 h-96 bg-gradient-to-br from-primary-200/30 to-primary-300/20 rounded-full blur-3xl" />
-        </ParallaxSection>
-        
-        {/* Layer 2: Medium speed */}
-        <ParallaxSection speed={0.4}>
-          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-tr from-secondary-200/30 to-secondary-300/20 rounded-full blur-3xl" />
-        </ParallaxSection>
-        
-        {/* Layer 3: Fastest */}
-        <ParallaxSection speed={0.6}>
-          <div className="absolute top-1/3 right-1/4 w-64 h-64 bg-gradient-to-br from-primary-100/20 to-secondary-100/20 rounded-full blur-2xl" />
-        </ParallaxSection>
-        
-        {/* Layer 4: Floating elements */}
-        <ParallaxSection speed={0.3}>
-          <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-primary-100/10 rounded-full blur-xl animate-pulse" />
-          <div className="absolute bottom-1/3 right-1/3 w-24 h-24 bg-secondary-100/10 rounded-full blur-xl animate-pulse" style={{ animationDelay: '1s' }} />
-        </ParallaxSection>
+        <AnimatedGradient />
+        <FloatingOrbs count={8} />
       </div>
 
       <div className="relative z-10">
@@ -43,58 +28,80 @@ export default function Home() {
           <section className="min-h-screen flex items-center justify-center py-12 sm:py-16">
             <ParallaxSection speed={0.5}>
               <div className="text-center space-y-6 sm:space-y-8">
-                {/* Logo */}
-                <div className="flex justify-center">
-                  <div className="p-4 sm:p-6 rounded-2xl bg-white/60 backdrop-blur-md border border-white/20 shadow-lg shadow-black/5 transition-all duration-500 hover:scale-105 hover:shadow-xl">
-                    <CharterFlowLogo className="h-12 w-12 sm:h-16 sm:w-16" />
+                {/* Logo with enhanced effects */}
+                <TextReveal delay={200}>
+                  <SpotlightCard>
+                    <div className="inline-flex p-4 sm:p-6 rounded-2xl bg-white/60 backdrop-blur-md border border-white/20 shadow-lg shadow-black/5 transition-all duration-500 hover:scale-105 hover:shadow-xl">
+                      <CharterFlowLogo className="h-12 w-12 sm:h-16 sm:w-16" />
+                    </div>
+                  </SpotlightCard>
+                </TextReveal>
+
+                {/* Badge with animation */}
+                <TextReveal delay={400}>
+                  <div className="inline-flex items-center rounded-full bg-primary-50 text-primary-700 border border-primary-100 px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+                    ✨ AI-first Product & Ops Studio
                   </div>
-                </div>
+                </TextReveal>
 
-                {/* Badge */}
-                <div className="inline-flex items-center rounded-full bg-primary-50 text-primary-700 border border-primary-100 px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium backdrop-blur-sm">
-                  ✨ AI-first Product & Ops Studio
-                </div>
+                {/* Enhanced headline */}
+                <TextReveal delay={600}>
+                  <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight px-4">
+                    <span className="bg-gradient-to-r from-primary-600 via-primary-500 to-secondary-600 bg-clip-text text-transparent">
+                      CharterFlow
+                    </span>
+                    <br />
+                    <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-neutral-900 font-normal">
+                      Transform knowledge into
+                      <span className="text-primary-600 font-semibold"> products</span>
+                    </span>
+                  </h1>
+                </TextReveal>
 
-                {/* Headline */}
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight px-4">
-                  <span className="bg-gradient-to-r from-primary-600 via-primary-500 to-secondary-600 bg-clip-text text-transparent">
-                    CharterFlow
-                  </span>
-                  <br />
-                  <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-neutral-900 font-normal">
-                    Transform knowledge into
-                    <span className="text-primary-600 font-semibold"> products</span>
-                  </span>
-                </h1>
+                {/* Description with typewriter effect */}
+                <TextReveal delay={800}>
+                  <div className="px-4">
+                    <TypewriterText 
+                      text="Capture research, discover your Unique Value Zone, and generate product charters that turn ideas into execution-ready systems."
+                      speed={30}
+                      delay={1000}
+                      className="text-base sm:text-lg lg:text-xl text-neutral-600 max-w-3xl mx-auto leading-relaxed"
+                    />
+                  </div>
+                </TextReveal>
 
-                {/* Description */}
-                <p className="text-base sm:text-lg lg:text-xl text-neutral-600 max-w-3xl mx-auto leading-relaxed px-4">
-                  Capture research, discover your Unique Value Zone, and generate product charters that turn ideas into execution-ready systems.
-                </p>
+                {/* Enhanced CTA Buttons */}
+                <TextReveal delay={1200}>
+                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
+                    <MagneticButton strength={0.2}>
+                      <Button 
+                        size="lg" 
+                        variant="primary"
+                        onClick={() => router.push('/login')}
+                        className="text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4"
+                      >
+                        Get Started
+                      </Button>
+                    </MagneticButton>
+                    <MagneticButton strength={0.2}>
+                      <Button 
+                        size="lg" 
+                        variant="outline"
+                        onClick={() => router.push('/notebooks')}
+                        className="text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4"
+                      >
+                        Explore Notebooks
+                      </Button>
+                    </MagneticButton>
+                  </div>
+                </TextReveal>
 
-                {/* CTA Buttons */}
-                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
-                  <Button 
-                    size="lg" 
-                    onClick={() => router.push('/login')}
-                    className="bg-gradient-to-r from-primary-600 to-primary-500 hover:from-primary-700 hover:to-primary-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4"
-                  >
-                    Get Started
-                  </Button>
-                  <Button 
-                    size="lg" 
-                    variant="outline"
-                    onClick={() => router.push('/notebooks')}
-                    className="border-primary-200 text-primary-700 hover:bg-primary-50 transition-all duration-300 text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4"
-                  >
-                    Explore Notebooks
-                  </Button>
-                </div>
-
-                {/* Social Proof */}
-                <div className="text-sm text-neutral-500 px-4">
-                  Built for founders, operators, and product strategists.
-                </div>
+                {/* Social proof */}
+                <TextReveal delay={1400}>
+                  <div className="text-sm text-neutral-500 px-4">
+                    Built for founders, operators, and product strategists.
+                  </div>
+                </TextReveal>
               </div>
             </ParallaxSection>
           </section>
@@ -102,12 +109,16 @@ export default function Home() {
           {/* Features Grid */}
           <section className="py-16 sm:py-24">
             <div className="text-center mb-12 sm:mb-16 px-4">
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-neutral-900 mb-4">
-                Everything you need to build and scale
-              </h2>
-              <p className="text-base sm:text-lg text-neutral-600 max-w-2xl mx-auto">
-                From idea to execution, CharterFlow provides the tools to capture insights, discover opportunities, and ship products.
-              </p>
+              <TextReveal delay={1600}>
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-neutral-900 mb-4">
+                  Everything you need to build and scale
+                </h2>
+              </TextReveal>
+              <TextReveal delay={1800}>
+                <p className="text-base sm:text-lg text-neutral-600 max-w-2xl mx-auto">
+                  From idea to execution, CharterFlow provides the tools to capture insights, discover opportunities, and ship products.
+                </p>
+              </TextReveal>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 px-4">
@@ -133,17 +144,24 @@ export default function Home() {
                   icon: '⚙️',
                 },
               ].map((feature, index) => (
-                <GlassCard
-                  key={feature.title}
-                  className="p-4 sm:p-6 space-y-3 sm:space-y-4 transform transition-all duration-300 hover:scale-105 hover:-translate-y-1"
-                  style={{ animationDelay: `${index * 100}ms` }}
-                >
-                  <div className="text-2xl sm:text-3xl">{feature.icon}</div>
-                  <div>
-                    <h3 className="text-base sm:text-lg font-semibold text-neutral-900">{feature.title}</h3>
-                    <p className="text-xs sm:text-sm text-neutral-600 mt-1 sm:mt-2">{feature.description}</p>
-                  </div>
-                </GlassCard>
+                <TextReveal key={feature.title} delay={2000 + index * 200}>
+                  <SpotlightCard>
+                    <GlassCard
+                      className="p-4 sm:p-6 cursor-pointer transform transition-all duration-300 hover:scale-105 hover:-translate-y-1"
+                      onClick={() => router.push('/notebooks')}
+                    >
+                      <div className="text-center">
+                        <div className="text-2xl sm:text-3xl mb-4">{feature.icon}</div>
+                        <h3 className="text-base sm:text-lg font-semibold text-neutral-900 mb-2">
+                          {feature.title}
+                        </h3>
+                        <p className="text-xs sm:text-sm text-neutral-600">
+                          {feature.description}
+                        </p>
+                      </div>
+                    </GlassCard>
+                  </SpotlightCard>
+                </TextReveal>
               ))}
             </div>
           </section>
@@ -167,14 +185,20 @@ export default function Home() {
                   description: 'From insights to charters you can execute immediately.',
                   icon: '🚀',
                 },
-              ].map((prop) => (
-                <div key={prop.title} className="text-center space-y-3 sm:space-y-4">
-                  <div className="text-3xl sm:text-4xl">{prop.icon}</div>
-                  <div>
-                    <h3 className="text-base sm:text-lg font-semibold text-neutral-900">{prop.title}</h3>
-                    <p className="text-xs sm:text-sm text-neutral-600 mt-1 sm:mt-2">{prop.description}</p>
+              ].map((prop, index) => (
+                <TextReveal key={prop.title} delay={2800 + index * 200}>
+                  <div className="text-center space-y-3 sm:space-y-4">
+                    <div className="text-3xl sm:text-4xl">{prop.icon}</div>
+                    <div>
+                      <h3 className="text-base sm:text-lg font-semibold text-neutral-900 mb-2">
+                        {prop.title}
+                      </h3>
+                      <p className="text-xs sm:text-sm text-neutral-600">
+                        {prop.description}
+                      </p>
+                    </div>
                   </div>
-                </div>
+                </TextReveal>
               ))}
             </div>
           </section>
