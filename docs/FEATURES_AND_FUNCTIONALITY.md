@@ -4,21 +4,59 @@
 
 ```mermaid
 mindmap
-  root((CharterFlow))
-    Authentication
-      Register
-      Login
-      Logout
-      Route protection
-    Notebooks
-      Notebook CRUD
-      Document upload
-      Document listing
-    Planned
-      Grounded Q&A
-      UVZ Discovery
-      Product Charters
-      Ops & Systems
+  root((🚀 CharterFlow))
+    🔐 Authentication
+      📝 Register
+      🔑 Login
+      🚪 Logout
+      🛡️ Route Protection
+      🎫 JWT Management
+    📚 Notebooks (MVP)
+      ➕ Notebook CRUD
+        📄 Create Notebook
+        📋 List Notebooks
+        👁️ View Notebook
+        ✏️ Update Notebook
+        🗑️ Delete Notebook
+      📤 Document Management
+        📁 Upload Documents
+        📋 List Documents
+        🏷️ File Metadata
+        💾 Local Storage
+    🎯 Core Features (Planned)
+      🤖 Grounded Q&A
+        ❓ Ask Questions
+        🔍 RAG Retrieval
+        📝 Citations
+      🎯 UVZ Discovery
+        🧠 Skills Assessment
+        💡 Pain Mapping
+        📊 UVZ Statement
+        🎪 Wedge Analysis
+      📋 Product Charters
+        🎯 Audience Definition
+        💭 Problem Statement
+        📈 MVP Outline
+        ⚠️ Risk Analysis
+      ⚙️ Operations & Systems
+        🔄 Workflow Design
+        📝 SOP Generation
+        👥 Client Journey
+        📊 Process Mapping
+    🛠️ Platform Features
+      📱 Responsive Design
+      🎨 Glassmorphism UI
+      📱 Mobile Menu
+      ⚡ Micro-animations
+      🔄 Parallax Effects
+      🔒 Security
+        🛡️ Rate Limiting
+        📊 Audit Logging
+        🔐 Input Validation
+      📈 Analytics
+        📊 Usage Metrics
+        📈 Performance Tracking
+        🎯 Success Metrics
 ```
 
 ## 1. Authentication

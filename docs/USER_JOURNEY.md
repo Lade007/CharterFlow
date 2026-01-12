@@ -3,13 +3,104 @@
 ## 0. User Journey Diagram (MVP)
 
 ```mermaid
+journey
+    title CharterFlow User Experience Journey
+    section Onboarding
+      Landing Page: 5: User
+      Sign In: 4: User
+      Dashboard Access: 5: User
+    section Core Workflow
+      Create Notebook: 4: User
+      Upload Documents: 3: User
+      View Document List: 5: User
+    section Future Features
+      AI Q&A: 2: User
+      UVZ Discovery: 1: User
+      Product Charter: 1: User
+```
+
+## 0.1 Detailed User Flow Diagram
+
+```mermaid
 flowchart TD
-  A[Landing /] --> B[Login /login]
-  B --> C[Dashboard /dashboard]
-  C --> D[Notebooks /notebooks]
-  D --> E[Notebook Detail /notebooks/:id]
-  E --> F[Upload Document]
-  F --> G[Document appears in list]
+    START([👤 New User]) --> LANDING[🏠 Landing Page<br/>Modern UI with Parallax]
+    LANDING --> SIGNUP[🔐 Sign In/Up<br/>Glassmorphism Form]
+    SIGNUP --> DASHBOARD[📊 Dashboard<br/>Module Cards Grid]
+    
+    DASHBOARD --> NOTEBOOKS[📚 Notebooks Module]
+    NOTEBOOKS --> CREATE[➕ Create Notebook<br/>Title + Description]
+    CREATE --> LIST[📋 Notebook List<br/>Glass Card Grid]
+    LIST --> DETAIL[🔍 Notebook Detail<br/>Document Management]
+    
+    DETAIL --> UPLOAD[📤 Upload Document<br/>Drag & Drop Interface]
+    UPLOAD --> SUCCESS[✅ Upload Success<br/>Real-time Progress]
+    SUCCESS --> VIEW[👁️ View Documents<br/>Metadata Display]
+    VIEW --> DETAIL
+    
+    %% Future Features
+    DETAIL -.-> QA[🤖 AI Q&A<br/>Grounded Responses]
+    QA -.-> UVZ[🎯 UVZ Discovery<br/>Skills to Pain Mapping]
+    UVZ -.-> CHARTER[📋 Product Charter<br/>AI-Generated Framework]
+    CHARTER -.-> OPS[⚙️ Operations<br/>Workflow Design]
+    
+    %% Navigation
+    DASHBOARD -.-> LANDING
+    NOTEBOOKS -.-> DASHBOARD
+    DETAIL -.-> NOTEBOOKS
+    
+    %% Styling
+    classDef current fill:#e8f5e8,stroke:#4caf50,stroke-width:2px
+    classDef future fill:#fff3e0,stroke:#ff9800,stroke-width:2px,stroke-dasharray: 5 5
+    classDef page fill:#e3f2fd,stroke:#2196f3,stroke-width:2px
+    
+    class LANDING,SIGNUP,DASHBOARD,NOTEBOOKS,CREATE,LIST,DETAIL,UPLOAD,SUCCESS,VIEW current
+    class QA,UVZ,CHARTER,OPS future
+    class START page
+```
+
+## 0.2 Screen Flow & State Management
+
+```mermaid
+stateDiagram-v2
+    [*] --> Landing
+    Landing --> Auth: Click Sign In
+    Auth --> Landing: Sign Out
+    Auth --> Dashboard: Login Success
+    Dashboard --> Notebooks: Click Notebooks
+    Notebooks --> NotebookDetail: Open Notebook
+    NotebookDetail --> Notebooks: Back to List
+    NotebookDetail --> UploadFlow: Upload Document
+    UploadFlow --> NotebookDetail: Upload Complete
+    
+    %% Future states
+    NotebookDetail --> AIChat: Ask Question
+    AIChat --> NotebookDetail: Close Chat
+    Dashboard --> UVZDiscovery: Click UVZ
+    UVZDiscovery --> ProductCharter: Generate Charter
+    ProductCharter --> Operations: Design Workflows
+    
+    %% Error states
+    Auth --> Auth: Login Failed
+    UploadFlow --> UploadFlow: Upload Error
+    Notebooks --> [*]: Sign Out
+    
+    note right of Landing
+        Modern glassmorphism design
+        Parallax scrolling effects
+        Mobile responsive
+    end note
+    
+    note right of Dashboard
+        Module cards with hover effects
+        Quick stats display
+        User welcome message
+    end note
+    
+    note right of NotebookDetail
+        Document list with metadata
+        Upload progress indicator
+        File type icons
+    end note
 ```
 
 ## 1. Primary Personas

@@ -12,18 +12,140 @@ This document describes the system design for the current implementation (MVP) a
 ## 1.1 System Design Diagram (MVP)
 
 ```mermaid
-flowchart LR
-  U[User] -->|Browser| WEB[Next.js Web (apps/web)]
-  WEB -->|/api/* (rewrites)| API[NestJS API (apps/api)]
-  API -->|TypeORM| DB[(SQLite dev / Postgres prod)]
-  API -->|multer diskStorage| FS[(Local uploads/ folder)]
+flowchart TB
+    subgraph "Client Layer"
+        U[👤 User]
+        B[🌐 Browser]
+    end
+    
+    subgraph "Frontend Layer"
+        WEB[⚛️ Next.js Web App<br/>apps/web:3000]
+        AUTH[🔐 Auth Context<br/>JWT Management]
+        UI[🎨 UI Components<br/>Glassmorphism Design]
+    end
+    
+    subgraph "API Gateway Layer"
+        PROXY[🔄 Next.js API Proxy<br/>/api/* rewrites]
+    end
+    
+    subgraph "Backend Layer"
+        API[🚀 NestJS API<br/>apps/api:3001]
+        subgraph "Core Modules"
+            AUTHM[🔑 Auth Module]
+            NOTE[📚 Notebooks Module]
+            USER[👥 Users Module]
+            WORK[🏢 Workspaces Module]
+        end
+        subgraph "Services"
+            JWT[🎫 JWT Service]
+            UPLOAD[📤 Upload Service]
+            VALID[✅ Validation Service]
+        end
+    end
+    
+    subgraph "Data Layer"
+        DB[(🗄️ Database<br/>SQLite dev / Postgres prod)]
+        FS[(📁 File Storage<br/>Local uploads/)]
+    end
+    
+    subgraph "Future Architecture"
+        FUTURE[🔮 Planned Features]
+        subgraph "AI/ML Layer"
+            QUEUE[📋 Queue System<br/>BullMQ/Redis]
+            INGEST[🔄 Ingestion Workers]
+            VECTOR[(🧠 Vector Store<br/>pgvector)]
+            LLM[🤖 LLM Gateway]
+        end
+        subgraph "Cloud Infrastructure"
+            S3[(☁️ S3 Storage)]
+            REDIS[(🔴 Redis Cache)]
+        end
+    end
+    
+    %% Connections
+    U --> B
+    B --> WEB
+    WEB --> AUTH
+    WEB --> UI
+    WEB --> PROXY
+    PROXY --> API
+    
+    API --> AUTHM
+    API --> NOTE
+    API --> USER
+    API --> WORK
+    
+    AUTHM --> JWT
+    NOTE --> UPLOAD
+    API --> VALID
+    
+    JWT --> DB
+    NOTE --> DB
+    USER --> DB
+    WORK --> DB
+    UPLOAD --> FS
+    
+    %% Future connections
+    FUTURE -.-> QUEUE
+    FUTURE -.-> INGEST
+    FUTURE -.-> VECTOR
+    FUTURE -.-> LLM
+    FUTURE -.-> S3
+    FUTURE -.-> REDIS
+    
+    %% Styling
+    classDef frontend fill:#e3f2fd,stroke:#2196f3,stroke-width:2px
+    classDef backend fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px
+    classDef data fill:#e8f5e8,stroke:#4caf50,stroke-width:2px
+    classDef future fill:#fff3e0,stroke:#ff9800,stroke-width:2px,stroke-dasharray: 5 5
+    
+    class WEB,AUTH,UI,PROXY frontend
+    class API,AUTHM,NOTE,USER,WORK,JWT,UPLOAD,VALID backend
+    class DB,FS data
+    class FUTURE,QUEUE,INGEST,VECTOR,LLM,S3,REDIS future
+```
 
-  subgraph Future[Planned]
-    API --> Q[Queue (BullMQ/Redis)]
-    Q --> ING[Ingestion workers]
-    ING --> VS[(Vector store pgvector)]
-    API --> LLM[LLM Provider Gateway]
-  end
+## 1.2 Data Flow Architecture
+
+```mermaid
+sequenceDiagram
+    participant U as 👤 User
+    participant W as 🌐 Web App
+    participant P as 🔄 API Proxy
+    participant A as 🚀 NestJS API
+    participant D as 🗄️ Database
+    participant F as 📁 File System
+    
+    Note over U,F: Authentication Flow
+    U->>W: Login Request
+    W->>P: POST /api/auth/login
+    P->>A: Forward Request
+    A->>D: Validate Credentials
+    D-->>A: User Data
+    A->>A: Generate JWT
+    A-->>W: JWT Token
+    W-->>U: Login Success
+    
+    Note over U,F: Notebook Creation Flow
+    U->>W: Create Notebook
+    W->>P: POST /api/notebooks
+    P->>A: Forward with JWT
+    A->>A: Validate JWT
+    A->>D: Create Notebook Row
+    D-->>A: Notebook ID
+    A-->>W: Notebook Data
+    W-->>U: Success
+    
+    Note over U,F: Document Upload Flow
+    U->>W: Upload Document
+    W->>P: POST /api/notebooks/:id/documents
+    P->>A: Forward with JWT + File
+    A->>A: Validate JWT + File
+    A->>F: Save File to Disk
+    A->>D: Create Document Row
+    D-->>A: Document ID
+    A-->>W: Document Metadata
+    W-->>U: Upload Success
 ```
 
 ## 2. High-level Architecture
