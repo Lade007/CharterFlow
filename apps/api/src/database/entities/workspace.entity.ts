@@ -11,6 +11,8 @@ import {
 } from 'typeorm';
 import { User } from './user.entity';
 
+export type WorkspaceType = 'personal' | 'team' | 'enterprise';
+
 @Entity('workspaces')
 @Index(['name', 'ownerId'])
 export class Workspace {
@@ -26,8 +28,12 @@ export class Workspace {
   @Column({ type: 'varchar', length: 255, nullable: true })
   avatar?: string;
 
-  @Column({ type: 'enum', enum: ['personal', 'team', 'enterprise'], default: 'personal' })
-  type: 'personal' | 'team' | 'enterprise';
+  @Column({ 
+    type: 'varchar', 
+    length: 20,
+    default: 'personal'
+  })
+  type: WorkspaceType;
 
   @Column({ type: 'json', nullable: true })
   settings?: Record<string, any>;
