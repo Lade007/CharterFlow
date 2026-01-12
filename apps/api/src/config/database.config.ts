@@ -14,6 +14,7 @@ export const databaseConfig: TypeOrmModuleAsyncOptions = {
       return {
         type: 'sqlite',
         database: ':memory:',
+        autoLoadEntities: true,
         entities: [User, Workspace],
         synchronize: true,
         logging: true,
@@ -28,6 +29,7 @@ export const databaseConfig: TypeOrmModuleAsyncOptions = {
       username: configService.get<string>('DATABASE_USERNAME', 'charterflow'),
       password: configService.get<string>('DATABASE_PASSWORD', 'charterflow_dev'),
       database: configService.get<string>('DATABASE_NAME', 'charterflow'),
+      autoLoadEntities: true,
       entities: [User, Workspace],
       synchronize: configService.get<string>('NODE_ENV') === 'development',
       logging: configService.get<string>('NODE_ENV') === 'development',

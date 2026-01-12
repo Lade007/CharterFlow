@@ -107,7 +107,6 @@ export function DocumentUpload({ notebookId, onUploadComplete }: DocumentUploadP
             type="file"
             className="hidden"
             onChange={handleFileSelect}
-            accept=".pdf,.doc,.docx,.txt,.md"
             id="file-upload"
             aria-label="Upload documents"
           />
@@ -124,7 +123,7 @@ export function DocumentUpload({ notebookId, onUploadComplete }: DocumentUploadP
                 {isUploading ? 'Uploading...' : 'Drag & drop files here'}
               </p>
               <p className="text-sm text-neutral-600 mb-4">
-                Supports PDF, Word, and text files
+                Any file type (development)
               </p>
             </div>
             

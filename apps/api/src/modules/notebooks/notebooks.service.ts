@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException, BadRequestException } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Notebook } from '../../database/entities/notebook.entity';
@@ -56,13 +56,41 @@ export class NotebooksService {
   async remove(id: string, userId: string): Promise<void> {
     const notebook = await this.findOne(id, userId);
     
-    if (!Notebook) {
+    if (!notebook) {
       throw new NotFoundException(`Notebook with ID ${id} not found`);
     }
 
     // Soft delete
     notebook.isActive = false;
     await this.notebooksRepository.save(notebook);
+  }
+
+  async createDocumentFromUpload(params: {
+    notebookId: string;
+    userId: string;
+    originalName: string;
+    storedFileName: string;
+    mimeType: string;
+    size: number;
+  }): Promise<Document> {
+    // Verify user owns the notebook
+    await this.findOne(params.notebookId, params.userId);
+
+    const doc = this.documentsRepository.create({
+      title: params.originalName,
+      fileName: params.storedFileName,
+      mimeType: params.mimeType,
+      size: params.size,
+      userId: params.userId,
+      notebookId: params.notebookId,
+      metadata: {
+        originalName: params.originalName,
+      },
+      isProcessed: false,
+      isActive: true,
+    });
+
+    return this.documentsRepository.save(doc);
   }
 
   async getDocuments(notebookId: string, userId: string): Promise<Document[]> {
