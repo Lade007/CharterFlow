@@ -16,7 +16,8 @@ export function Navbar() {
     { href: '/', label: 'Home' },
     { href: '/dashboard', label: 'Dashboard', protected: true },
     { href: '/notebooks', label: 'Notebooks', protected: true },
-    { href: '/uvz', label: 'UVZ', protected: true },
+    { href: '/uvz-discovery', label: 'UVZ Discovery', protected: true },
+    { href: '/product-charter', label: 'Product Charter', protected: true },
     { href: '/charters', label: 'Charters', protected: true },
     { href: '/operations', label: 'Operations', protected: true },
   ];

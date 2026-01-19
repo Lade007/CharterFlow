@@ -12,3 +12,5 @@ export { ParallaxSection } from './parallax-section';
 export { MobileMenu } from './mobile-menu';
 export { PremiumHero, PremiumHeroSection } from './brand/premium-hero';
 export { SimpleBackground } from './simple-background';
+export { FocusTrap } from './focus-trap';
+export { AccessibleModal, ScreenReaderOnly } from './accessible-modal';

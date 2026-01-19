@@ -10,6 +10,9 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   asChild?: boolean;
   icon?: React.ReactNode;
   iconPosition?: 'left' | 'right';
+  'aria-label'?: string;
+  'aria-describedby'?: string;
+  'aria-expanded'?: boolean;
 }
 
 export function Button({
