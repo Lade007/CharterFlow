@@ -11,6 +11,7 @@ import { AuthService } from './auth.service';
 import { LocalAuthGuard } from './guards/local-auth.guard';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { CreateUserDto } from '../users/dto/create-user.dto';
+import { LoginDto } from './dto/login.dto';
 
 @ApiTags('auth')
 @Controller('auth')
@@ -26,8 +27,12 @@ export class AuthController {
   @UseGuards(LocalAuthGuard)
   @Post('login')
   @ApiOperation({ summary: 'Login user' })
-  async login(@Request() req) {
-    return this.authService.login(req.user);
+  async login(@Body() loginDto: { email: string; password: string }) {
+    const user = await this.authService.validateUser(loginDto.email, loginDto.password);
+    if (!user) {
+      throw new UnauthorizedException('Invalid credentials');
+    }
+    return this.authService.login(user);
   }
 
   @UseGuards(JwtAuthGuard)
